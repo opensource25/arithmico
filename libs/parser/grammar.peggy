@@ -130,7 +130,7 @@ Expression = Or / LatexExpression
 
 // ============= Define LatexExpressions ordered by Name =========================
 
-LatexExpression = LatexFrac / LatexLog / LatexLogN / LatexLogWithBase / LatexSqrt / LatexSqrtWithDegree
+LatexExpression = LatexFrac / LatexLog / LatexLogN / LatexLogWithBase / LatexPi / LatexSqrt / LatexSqrtWithDegree
 
 LatexFrac = "\\frac" _ "{" _ left:Expression _ "}" _ "{" _ right:Expression _ "}" {
     return {
@@ -170,6 +170,13 @@ LatexLogWithBase = "\\log" _ "_{" _ base:Expression _ "}" _ "(" _ expr:Expressio
             name: "log"
         },
         parameters: [expr, base]
+    }
+}
+
+LatexPi = "\\pi" {
+    return {
+        type: "symbol",
+        name: "pi"
     }
 }
 
